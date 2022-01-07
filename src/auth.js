@@ -63,7 +63,6 @@ export default {
         store.commit("logout")
         localStorage.isSignIn = 'false'
       } else {
-      // if (auth) {
         if (keycloak.token && keycloak.idToken && keycloak.token != '' && keycloak.idToken != '') {
           store.commit("login", keycloak.tokenParsed)
           localStorage.isSignIn = 'true'
