@@ -48,6 +48,7 @@
       </CHeaderNavItem>
       <div v-if="isAuthenticated == false">
         <button v-on:click="onLoginClicked" type="button" class="btn btn-primary rounded-pill">Login</button>
+        <button v-on:click="onCheckClicked" type="button" class="btn btn-primary rounded-pill">Silent Login</button>
       </div>
       <TheHeaderDropdownAccnt/>
     </CHeaderNav>
@@ -68,12 +69,16 @@ export default {
   computed: {
     isAuthenticated() {
       return this.$store.state.isAuthenticated
-    }
+    },
   },
   methods: {
     onLoginClicked() {
       console.log('onLoginClicked')
       auth.login()
+    },
+    onCheckClicked() {
+      console.log('onCheckClicked')
+      auth.silentCheck()
     },
   }
 }

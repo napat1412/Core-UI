@@ -5,11 +5,10 @@ import config from '@/config'
 let initOptions = {
   realm: config.keycloak.realm,
   url: config.keycloak.serverUrl,
-  clientId: config.keycloak.clientId,
-  onLoad: 'check-sso'
+  clientId: config.keycloak.clientId
 }
 
-let keycloak = Keycloak(initOptions)
+var keycloak = Keycloak(initOptions)
 
 export default {
   login () {
@@ -20,6 +19,7 @@ export default {
       } else {
         if (keycloak.token && keycloak.idToken && keycloak.token != '' && keycloak.idToken != '') {
           store.commit("login", keycloak.tokenParsed)
+          localStorage.isSignIn = 'true'
           // Token Refresh
           setInterval(() => {
             keycloak.updateToken(70).then((refreshed) => {
@@ -45,6 +45,7 @@ export default {
           // }
         } else {
           store.commit("logout")
+          localStorage.isSignIn = 'false'
         }
       }
     }).catch(() => {
@@ -52,8 +53,46 @@ export default {
     })
   },
 
+  silentCheck () {
+    keycloak.init({
+      onLoad: 'check-sso',
+      silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html'
+    }).then((auth) => {
+      if (!auth) {
+        // console.log('localStorage is incorrect state. Reset localStorage')
+        store.commit("logout")
+        localStorage.isSignIn = 'false'
+      } else {
+      // if (auth) {
+        if (keycloak.token && keycloak.idToken && keycloak.token != '' && keycloak.idToken != '') {
+          store.commit("login", keycloak.tokenParsed)
+          localStorage.isSignIn = 'true'
+          // Token Refresh
+          setInterval(() => {
+            keycloak.updateToken(70).then((refreshed) => {
+              if (refreshed) {
+                console.log('Token refreshed' + refreshed);
+              } else {
+                console.log('Token not refreshed, valid for '
+                  + Math.round(keycloak.tokenParsed.exp + keycloak.timeSkew - new Date().getTime() / 1000) + ' seconds');
+              }
+            }).catch(() => {
+              console.log('Failed to refresh token');
+            })
+          }, 6000)
+        } else {
+          store.commit("logout")
+          localStorage.isSignIn = 'false'
+        }
+      }
+    }).catch(() => {
+      console.log("Silent Authenticated Failed")
+    })
+  },
+
   logout () {
     store.commit("logout")
+    localStorage.isSignIn = 'false'
     // ### if you need to logout from keycloak, use keycloak.logout() ###
     // keycloak.logout()
   },

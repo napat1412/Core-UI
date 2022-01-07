@@ -76,17 +76,20 @@ export default {
     },
     avatarName() {
       return this.$store.state.user.firstname[0].toUpperCase() + this.$store.state.user.lastname[0].toUpperCase()
-    }
+    },
   },
   data () {
-    return { 
+    return {
       itemsCount: 42
     }
   },
   methods: {
     onLogoutClicked() {
       auth.logout()
-      this.$router.push({ name: 'Home' })
+      // Prevent redirect to same page
+      if ( window.location.pathname !== '/dashboard' ) {
+        this.$router.push({ path: '/dashboard' })
+      }
     }
   }
 }

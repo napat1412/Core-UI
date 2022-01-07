@@ -5,7 +5,7 @@ config.keycloak = {};
 
 config.backend.api_endpoint = process.env.BACKEND_API_ENDPOINT || 'http://203.185.97.25:8080';
 
-config.keycloak.serverUrl = process.env.KEYCLOAK_SERVERURL || 'https://sso.meca.in.th/auth';
+config.keycloak.serverUrl = process.env.KEYCLOAK_SERVERURL || 'https://id.meca.in.th/auth';
 config.keycloak.realm = process.env.KEYCLOAK_REALM || 'dataplatform';
 // config.keycloak.clientId = process.env.KEYCLOAK_CLIENT_ID || 'mecas-cloud-control-backend';
 config.keycloak.clientId = process.env.KEYCLOAK_CLIENT_ID || 'ceph-s3-frontend';
