@@ -27,3 +27,6 @@ yarn-error.log*
 *.sw*
 
 .github
+
+# project file
+config.js

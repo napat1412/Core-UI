@@ -4,33 +4,13 @@
 [coreui]: https://coreui.io/vue
 
 ## Description
-
 - We integrade Core-UI with Keycloak.
-- Why we decided to create CoreUI? Please read this article: [Jack of all trades, master of none. Why Boostrap Admin Templates suck.](https://medium.com/@lukaszholeczek/jack-of-all-trades-master-of-none-5ea53ef8a1f#.7eqx1bcd8)
-![Template](https://coreui.io/images/github/vue-free-template-3.gif)
-
-
-**This is not just another Admin Template.** It goes way beyond hitherto admin templates thanks to:
-
-- Wonderful styling delivered by bootstrap compatible css library [CoreUI](https://coreui.io/docs/3.0-beta/),
-- Dedicated [component library](https://coreui.io/vue/docs/),
-- Dedicated vue tooling libraries ([coreui-vue-chartjs](https://coreui.io/vue/docs/components/charts), [coreui-icons-vue](https://github.com/coreui/coreui-icons-vue)),
-- Over 500 [free svg icons](https://coreui.io/icons) consistent with our styling,
-- Transparent code and file structure
-- Possibility of extension to [pro version](https://coreui.io/vue) which offers even more!
-
-CoreUI is meant to be the UX game changer. Pure & transparent code is devoid of redundant components, so the app is light enough to offer ultimate user experience. This means mobile devices also, where the navigation is just as easy and intuitive as on a desktop or laptop. The CoreUI Layout API lets you customize your project for almost any device – be it Mobile, Web or WebApp – CoreUI covers them all!
-
-**NOTE:** Please remember to star this project to get new versions updates of this template.
-
-### Demo
-
-A fully functional demo is available at [CoreUI](http://coreui.io/vue/)
 
 ### Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [CoreUI](#coreui)
 - [Documentation](#documentation)
 - [Contributing](#contributing)
 - [Versioning](#versioning)
@@ -42,17 +22,35 @@ A fully functional demo is available at [CoreUI](http://coreui.io/vue/)
 
 ### Installation
 
-#### Clone repo
+#### Config app
 
 ``` bash
 # clone the repo
 $ git clone https://github.com/coreui/coreui-free-vue-admin-template.git CoreUI-Vue
 
 # go into app's directory
+$ cd CoreUI-Vue/src
+
+# create config.js
+$ cp config.js.template config.js
+
+# config authentication with keycloak
+$ vi config.js
+
+```
+
+#### Run app
+
+``` bash
+# go into app's directory
 $ cd CoreUI-Vue
 
 # install app's dependencies
-$ npm install
+$ yarn install
+
+# run application
+$ yarn serve
+
 ```
 
 #### Usage
@@ -74,6 +72,29 @@ npm run test:unit
 npm run test:e2e
 
 ```
+
+#### CoreUI
+- Why we decided to create CoreUI? Please read this article: [Jack of all trades, master of none. Why Boostrap Admin Templates suck.](https://medium.com/@lukaszholeczek/jack-of-all-trades-master-of-none-5ea53ef8a1f#.7eqx1bcd8)
+![Template](https://coreui.io/images/github/vue-free-template-3.gif)
+
+
+**This is not just another Admin Template.** It goes way beyond hitherto admin templates thanks to:
+
+- Wonderful styling delivered by bootstrap compatible css library [CoreUI](https://coreui.io/docs/3.0-beta/),
+- Dedicated [component library](https://coreui.io/vue/docs/),
+- Dedicated vue tooling libraries ([coreui-vue-chartjs](https://coreui.io/vue/docs/components/charts), [coreui-icons-vue](https://github.com/coreui/coreui-icons-vue)),
+- Over 500 [free svg icons](https://coreui.io/icons) consistent with our styling,
+- Transparent code and file structure
+- Possibility of extension to [pro version](https://coreui.io/vue) which offers even more!
+
+CoreUI is meant to be the UX game changer. Pure & transparent code is devoid of redundant components, so the app is light enough to offer ultimate user experience. This means mobile devices also, where the navigation is just as easy and intuitive as on a desktop or laptop. The CoreUI Layout API lets you customize your project for almost any device – be it Mobile, Web or WebApp – CoreUI covers them all!
+
+**NOTE:** Please remember to star this project to get new versions updates of this template.
+
+### Demo
+
+A fully functional demo is available at [CoreUI](http://coreui.io/vue/)
+
 
 For a detailed explanation on how things work, check out the [Vue CLI Guide](https://cli.vuejs.org/guide/).
 
